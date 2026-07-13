@@ -48,7 +48,6 @@
         }
     </style>
     <script>
-        // Manejador de fallas de imagen del logo principal
         function handleLogoError(img) {
             if (img.src.includes('Picture12.png')) {
                 img.src = 'Picture1_2.png';
@@ -61,22 +60,19 @@
 </head>
 <body class="text-zinc-800 dark:text-zinc-200 min-h-screen pb-12 transition-colors duration-300">
 
-    <!-- NAV BAR -->
     <nav class="border-b border-brand-border bg-white/80 dark:bg-brand-bg/80 backdrop-blur-md sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-4xl mx-auto px-4 py-4 relative flex items-center justify-center">
             <div class="bg-zinc-100 dark:bg-white px-8 py-3 rounded-2xl flex items-center justify-center transition-all hover:scale-[1.03] duration-300">
-                <img id="brand-logo" src="Picture12.png" alt="Evianas Logo" class="h-16 md:h-20 w-auto object-contain" onerror="handleLogoError(this)">
+                <img id="brand-logo" src="https://raw.githubusercontent.com/andre15190-byte/Evianas---Guia-de-Ahumado/main/Logo.png" alt="Evianas Logo" class="h-16 md:h-20 w-auto object-contain" onerror="handleLogoError(this)">
                 <span id="brand-text-fallback" class="hidden text-zinc-950 font-display font-extrabold tracking-tight text-xl ml-2">Evianas</span>
             </div>
             
-            <!-- Botón Dark/Light Mode -->
             <button id="theme-toggle" class="absolute right-4 p-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800/60 text-brand-orange hover:bg-zinc-300 dark:hover:bg-zinc-700/80 transition-colors border border-zinc-300 dark:border-zinc-700 shadow-sm">
                 <i id="theme-icon" class="fa-solid fa-sun"></i>
             </button>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <div class="relative overflow-hidden py-12 px-4 border-b border-zinc-200 dark:border-brand-border transition-colors duration-300">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(230,81,0,0.15)_0%,transparent_50%)] pointer-events-none"></div>
         <div class="max-w-3xl mx-auto text-center relative z-10">
@@ -89,16 +85,13 @@
                 Selecciona el tipo de producto para adaptar las instrucciones en tiempo real:
             </p>
 
-            <!-- Selector de Producto Principal -->
             <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto mb-8">
-                <!-- Wood Chips -->
                 <button onclick="setProduct('chips')" id="btn-prod-chips" class="flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-16 h-16 bg-brand-orange/10 rounded-full translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform"></div>
                     <span class="block font-display font-extrabold text-zinc-900 dark:text-white text-lg relative z-10">Wood Chips</span>
                     <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-brand-orange bg-brand-orange/20 px-2.5 py-0.5 rounded-full mt-1 relative z-10">Astillas</span>
                 </button>
                 
-                <!-- Wood Chunks -->
                 <button onclick="setProduct('chunks')" id="btn-prod-chunks" class="flex-1 p-4 rounded-2xl border-2 border-zinc-200 dark:border-brand-border bg-white dark:bg-brand-card text-left transition relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-16 h-16 bg-zinc-200 dark:bg-zinc-800 rounded-full translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform"></div>
                     <span class="block font-display font-extrabold text-zinc-500 dark:text-zinc-400 text-lg relative z-10">Wood Chunks</span>
@@ -106,7 +99,6 @@
                 </button>
             </div>
 
-            <!-- Parrillas Compatibles -->
             <div class="w-full flex flex-col items-center">
                 <span class="text-xs uppercase text-zinc-500 font-semibold tracking-wider mb-2">Parrillas compatibles</span>
                 <div class="flex flex-wrap justify-center gap-2">
@@ -124,10 +116,8 @@
         </div>
     </div>
 
-    <!-- MAIN INTERACTIVE SECTION -->
     <main class="max-w-3xl mx-auto px-4 mt-8 space-y-8">
 
-        <!-- PASO 1: SELECCIÓN DE MADERA INTERACTIVA -->
         <section class="bg-white dark:bg-brand-card border border-zinc-200 dark:border-brand-border rounded-3xl p-6 shadow-lg transition-colors duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
@@ -139,9 +129,7 @@
             
             <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-4 transition-colors">Haz clic en cada tipo de madera para ver su compatibilidad y perfil de sabor:</p>
             
-            <div id="wood-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-                <!-- Se inyecta dinámicamente con JS -->
-            </div>
+            <div id="wood-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6"></div>
 
             <div id="wood-details" class="bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-brand-border p-4 rounded-2xl mb-4 transition-all duration-300">
                 <div class="flex items-center gap-2 mb-1">
@@ -152,13 +140,9 @@
                 <p id="wood-desc" class="text-xs text-zinc-600 dark:text-zinc-400 transition-colors">Humo dulce y constante. Perfecto para sesiones largas sin amargar.</p>
             </div>
 
-            <!-- Sección dinámica: Remojo o Regla de Oro -->
-            <div id="prep-method-section" class="border-t border-zinc-200 dark:border-brand-border/40 pt-4 mt-4 transition-colors">
-                <!-- Se actualiza dinámicamente -->
-            </div>
+            <div id="prep-method-section" class="border-t border-zinc-200 dark:border-brand-border/40 pt-4 mt-4 transition-colors"></div>
         </section>
 
-        <!-- PASO 2: TIPO DE PARRILLA INTERACTIVO -->
         <section class="bg-white dark:bg-brand-card border border-zinc-200 dark:border-brand-border rounded-3xl p-6 shadow-lg transition-colors duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
@@ -179,12 +163,9 @@
                 </button>
             </div>
 
-            <div id="grill-content" class="space-y-4">
-                <!-- Inyectado por JS -->
-            </div>
+            <div id="grill-content" class="space-y-4"></div>
         </section>
 
-        <!-- PASO 3: AHUMADO Y COCCIÓN -->
         <section class="bg-white dark:bg-brand-card border border-zinc-200 dark:border-brand-border rounded-3xl p-6 shadow-lg transition-colors duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
@@ -222,15 +203,12 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="max-w-3xl mx-auto px-4 mt-12 text-center text-zinc-500 text-xs">
         <p class="uppercase tracking-wider font-bold text-zinc-600 dark:text-zinc-400 mb-2">Evianas</p>
         <p>© 2026 Evianas. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const htmlElement = document.documentElement;
@@ -423,7 +401,6 @@
                 icon2.className = "fa-solid fa-fire";
                 text2.innerText = "Carbón";
 
-                // AQUI SE APLICA LA UNIFICACIÓN DE ¿REMOJAR O NO? EN UN SOLO CONTENEDOR
                 prepMethodSection.innerHTML = `
                     <div class="bg-brand-orange/10 border border-brand-orange/30 p-5 rounded-2xl transition-colors">
                         <span class="block text-xs uppercase text-brand-orange font-bold tracking-widest mb-3 flex items-center gap-2">
@@ -520,6 +497,5 @@
             }
         }
     </script>
-
 </body>
 </html>
