@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evianas - Guía Interactiva de Ahumado</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -99,20 +98,22 @@
                 </button>
             </div>
 
-            <div class="w-full flex flex-col items-center">
-                <span class="text-xs uppercase text-zinc-500 font-semibold tracking-wider mb-2">Parrillas compatibles</span>
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span id="badge-gas" class="flex items-center gap-1.5 bg-zinc-200 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 px-3 py-1 rounded-full text-xs font-semibold transition-colors">
-                        <i class="fa-solid fa-gas-pump text-brand-orange"></i> Gas
-                    </span>
-                    <span id="badge-carbon" class="flex items-center gap-1.5 bg-zinc-200 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 px-3 py-1 rounded-full text-xs font-semibold transition-colors">
-                        <i class="fa-solid fa-fire text-brand-orange"></i> Carbón
-                    </span>
-                    <span id="badge-ahumadores" class="hidden flex items-center gap-1.5 bg-zinc-200 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 px-3 py-1 rounded-full text-xs font-semibold transition-colors">
-                        <i class="fa-solid fa-smog text-brand-orange"></i> Ahumadores
-                    </span>
-                </div>
+        <div class="w-full flex flex-col items-center">
+            <span class="text-xs uppercase text-zinc-500 font-semibold tracking-wider mb-2">
+                Parrillas compatibles
+            </span>
+            <div class="flex flex-wrap justify-center gap-2">
+                <span id="badge-gas" class="flex items-center gap-1.5 bg-zinc-200 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 px-3 py-1 rounded-full text-xs font-semibold transition-colors">
+                    <i class="fa-solid fa-gas-pump text-brand-orange"></i> Gas
+                </span>
+                <span id="badge-ahumadores" class="hidden flex items-center gap-1.5 bg-zinc-200 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 px-3 py-1 rounded-full text-xs font-semibold transition-colors">
+                    <i class="fa-solid fa-smog text-brand-orange"></i> Ahumadores
+                </span>
+                <span id="badge-carbon" class="flex items-center gap-1.5 bg-zinc-200 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 px-3 py-1 rounded-full text-xs font-semibold transition-colors">
+                    <i class="fa-solid fa-fire text-brand-orange"></i> Carbón
+                </span>
             </div>
+        </div>
         </div>
     </div>
 
@@ -240,7 +241,7 @@
         };
 
         let currentProduct = 'chips'; 
-        let currentGrillOpt = 'opt2'; 
+        let currentGrillOpt = 'opt1'; // <-- CAMBIADO A 'opt1' (GAS)
         let selectedWoodId = 'manzano';
 
         const btnChips = document.getElementById('btn-prod-chips');
@@ -293,7 +294,9 @@
                 metricDurationTitle.innerText = "Duración: 20-30 min";
                 metricDurationDesc.innerText = "Combustión rápida. Ten a mano un puñado adicional si necesitas extender el tiempo de humo.";
                 finalImage.src = "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80";
-                currentGrillOpt = 'opt2';
+                
+                // Si el usuario cambia a chips, resetear opcionalmente a Gas
+                currentGrillOpt = 'opt1'; 
             } else {
                 btnChunks.className = "flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group";
                 if (spansChunks.length >= 2) {
@@ -318,7 +321,9 @@
                 metricDurationTitle.innerText = "Duración: 1 a 3+ Horas";
                 metricDurationDesc.innerText = "Ideal para cortes duros que requieren paciencia extrema.";
                 finalImage.src = "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80";
-                currentGrillOpt = 'opt2';
+                
+                // Si el usuario cambia a chunks, por defecto es carbón
+                currentGrillOpt = 'opt1';
             }
 
             renderWoodGrid();
