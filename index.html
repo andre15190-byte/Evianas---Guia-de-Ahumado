@@ -407,21 +407,29 @@
                 text2.innerText = "Carbón";
 
                 prepMethodSection.innerHTML = `
-                    <div class="bg-brand-orange/10 border border-brand-orange/30 p-5 rounded-2xl transition-colors">
-                        <span class="block text-xs uppercase text-brand-orange font-bold tracking-widest mb-3 flex items-center gap-2">
-                            <i class="fa-solid fa-droplet"></i> ¿Remojar o no?
-                        </span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div class="bg-white dark:bg-zinc-900/60 border border-brand-orange/20 p-4 rounded-xl shadow-sm transition-colors">
-                                <span class="block text-xs font-bold text-brand-orange mb-1">💦 Húmedo (30 min)</span>
-                                <p class="text-[11px] text-zinc-600 dark:text-zinc-400">Prolonga la combustión y genera vapor aromatizado inicial. Úsalo si pones los chips directo al carbón.</p>
-                            </div>
-                            <div class="bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-brand-border p-4 rounded-xl shadow-sm transition-colors">
-                                <span class="block text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-1">🔥 Seco</span>
-                                <p class="text-[11px] text-zinc-600 dark:text-zinc-400">Humo denso y sumamente inmediato desde el primer segundo. Ideal para cocciones súper rápidas.</p>
-                            </div>
+                <div class="bg-brand-orange/10 border border-brand-orange/30 p-5 rounded-2xl transition-colors">
+                    <span class="block text-xs uppercase text-brand-orange font-bold tracking-widest mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-droplet"></i> ¿Remojar o no?
+                    </span>
+                
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div
+                            class="bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-brand-border p-4 rounded-xl shadow-sm transition-colors">
+                            <span class="block text-xs font-bold text-brand-orange mb-1">💦 Húmedo (30 min)</span>
+                            <p class="text-[11px] text-zinc-600 dark:text-zinc-400">
+                                Prolonga la combustión y genera vapor aromatizado inicial. Úsalo si pones los chips directo al carbón.
+                            </p>
+                        </div>
+                
+                        <div
+                            class="bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-brand-border p-4 rounded-xl shadow-sm transition-colors">
+                            <span class="block text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-1">🔥 Seco</span>
+                            <p class="text-[11px] text-zinc-600 dark:text-zinc-400">
+                                Humo denso y sumamente inmediato desde el primer segundo. Ideal para cocciones súper rápidas.
+                            </p>
                         </div>
                     </div>
+                </div>
                 `;
 
                 if (currentGrillOpt === 'opt1') {
