@@ -41,8 +41,23 @@
         .dark body {
             background-color: #0c0c0e;
         }
-        .orange-glow-border:focus, .orange-glow-border.active {
-            box-shadow: 0 0 15px rgba(255, 152, 0, 0.2);
+        /* Animación para el cambio de contenido de maderas */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        /* Mejoras de accesibilidad y selección */
+        .orange-glow-border:focus-visible {
+            outline: 2px solid #ff9800;
+            outline-offset: 2px;
+        }
+        .orange-glow-border:focus {
+            outline: none; 
+        }
+        .orange-glow-border.active {
             border-color: #ff9800;
         }
     </style>
@@ -85,13 +100,13 @@
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto mb-8">
-                <button onclick="setProduct('chips')" id="btn-prod-chips" class="flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group">
+                <button onclick="setProduct('chips')" id="btn-prod-chips" class="flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group active:scale-95">
                     <div class="absolute top-0 right-0 w-16 h-16 bg-brand-orange/10 rounded-full translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform"></div>
                     <span class="block font-display font-extrabold text-zinc-900 dark:text-white text-lg relative z-10">Wood Chips</span>
                     <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-brand-orange bg-brand-orange/20 px-2.5 py-0.5 rounded-full mt-1 relative z-10">Astillas</span>
                 </button>
                 
-                <button onclick="setProduct('chunks')" id="btn-prod-chunks" class="flex-1 p-4 rounded-2xl border-2 border-zinc-200 dark:border-brand-border bg-white dark:bg-brand-card text-left transition relative overflow-hidden group">
+                <button onclick="setProduct('chunks')" id="btn-prod-chunks" class="flex-1 p-4 rounded-2xl border-2 border-zinc-200 dark:border-brand-border bg-white dark:bg-brand-card text-left transition relative overflow-hidden group active:scale-95">
                     <div class="absolute top-0 right-0 w-16 h-16 bg-zinc-200 dark:bg-zinc-800 rounded-full translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform"></div>
                     <span class="block font-display font-extrabold text-zinc-500 dark:text-zinc-400 text-lg relative z-10">Wood Chunks</span>
                     <span class="inline-block text-[10px] font-bold tracking-wider uppercase text-zinc-600 dark:text-zinc-500 bg-zinc-200 dark:bg-zinc-800 px-2.5 py-0.5 rounded-full mt-1 relative z-10">Trozos</span>
@@ -199,7 +214,9 @@
                 </div>
             </div>
 
-            <img id="final-image" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover rounded-2xl mt-4 border border-zinc-300 dark:border-zinc-800" alt="Resultado de ahumado Evianas" onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80'">
+            <div class="overflow-hidden rounded-2xl mt-4 border border-zinc-300 dark:border-zinc-800 relative group">
+                <img id="final-image" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" alt="Resultado de ahumado Evianas" onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80'">
+            </div>
         </section>
 
     </main>
@@ -271,13 +288,13 @@
             const spansChunks = btnChunks.getElementsByTagName('span');
 
             if (product === 'chips') {
-                btnChips.className = "flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group";
+                btnChips.className = "flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group active:scale-95";
                 if (spansChips.length >= 2) {
                     spansChips[0].className = "block font-display font-extrabold text-zinc-900 dark:text-white text-lg relative z-10";
                     spansChips[1].className = "inline-block text-[10px] font-bold tracking-wider uppercase text-brand-orange bg-brand-orange/20 px-2.5 py-0.5 rounded-full mt-1 relative z-10";
                 }
 
-                btnChunks.className = "flex-1 p-4 rounded-2xl border-2 border-zinc-200 dark:border-brand-border bg-white dark:bg-brand-card text-left transition relative overflow-hidden group";
+                btnChunks.className = "flex-1 p-4 rounded-2xl border-2 border-zinc-200 dark:border-brand-border bg-white dark:bg-brand-card text-left transition relative overflow-hidden group active:scale-95";
                 if (spansChunks.length >= 2) {
                     spansChunks[0].className = "block font-display font-extrabold text-zinc-500 dark:text-zinc-400 text-lg group-hover:text-zinc-900 dark:group-hover:text-white transition relative z-10";
                     spansChunks[1].className = "inline-block text-[10px] font-bold tracking-wider uppercase text-zinc-600 dark:text-zinc-500 bg-zinc-200 dark:bg-zinc-800 px-2.5 py-0.5 rounded-full mt-1 group-hover:bg-zinc-300 dark:group-hover:bg-zinc-700 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 relative z-10";
@@ -298,13 +315,13 @@
                 // Si el usuario cambia a chips, resetear opcionalmente a Gas
                 currentGrillOpt = 'opt1'; 
             } else {
-                btnChunks.className = "flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group";
+                btnChunks.className = "flex-1 p-4 rounded-2xl border-2 border-brand-orange bg-brand-orange/10 text-left transition relative overflow-hidden group active:scale-95";
                 if (spansChunks.length >= 2) {
                     spansChunks[0].className = "block font-display font-extrabold text-zinc-900 dark:text-white text-lg relative z-10";
                     spansChunks[1].className = "inline-block text-[10px] font-bold tracking-wider uppercase text-zinc-700 dark:text-zinc-300 bg-brand-orange/20 px-2.5 py-0.5 rounded-full mt-1 relative z-10";
                 }
 
-                btnChips.className = "flex-1 p-4 rounded-2xl border-2 border-zinc-200 dark:border-brand-border bg-white dark:bg-brand-card text-left transition relative overflow-hidden group";
+                btnChips.className = "flex-1 p-4 rounded-2xl border-2 border-zinc-200 dark:border-brand-border bg-white dark:bg-brand-card text-left transition relative overflow-hidden group active:scale-95";
                 if (spansChips.length >= 2) {
                     spansChips[0].className = "block font-display font-extrabold text-zinc-500 dark:text-zinc-400 text-lg group-hover:text-zinc-900 dark:group-hover:text-white transition relative z-10";
                     spansChips[1].className = "inline-block text-[10px] font-bold tracking-wider uppercase text-zinc-600 dark:text-zinc-500 bg-zinc-200 dark:bg-zinc-800 px-2.5 py-0.5 rounded-full mt-1 group-hover:bg-zinc-300 dark:group-hover:bg-zinc-700 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 relative z-10";
@@ -342,7 +359,7 @@
                 button.id = `btn-wood-${wood.id}`;
                 button.onclick = () => selectWood(wood.id);
                 
-                button.className = `wood-btn p-3 bg-zinc-50 dark:bg-zinc-800/40 border rounded-xl text-left transition hover:bg-zinc-100 dark:hover:bg-zinc-800/80 orange-glow-border ${isActive ? 'active border-brand-orange' : 'border-zinc-200 dark:border-brand-border'}`;
+                button.className = `wood-btn p-3 bg-zinc-50 dark:bg-zinc-800/40 border rounded-xl text-left transition hover:bg-zinc-100 dark:hover:bg-zinc-800/80 orange-glow-border active:scale-95 ${isActive ? 'active border-brand-orange' : 'border-zinc-200 dark:border-brand-border'}`;
                 
                 button.innerHTML = `
                     <div class="flex items-center gap-1.5 mb-1">
@@ -378,6 +395,13 @@
             const data = activeList.find(w => w.id === id);
             
             if (data) {
+                const detailsDiv = document.getElementById('wood-details');
+                
+                // Reiniciar la animación forzando un reflow
+                detailsDiv.classList.remove('animate-fade-in');
+                void detailsDiv.offsetWidth; 
+                detailsDiv.classList.add('animate-fade-in');
+
                 document.getElementById('wood-name').innerText = data.name;
                 document.getElementById('wood-pair').innerText = data.pair;
                 document.getElementById('wood-desc').innerText = data.desc;
@@ -502,11 +526,11 @@
             }
 
             if (currentGrillOpt === 'opt1') {
-                btn1.className = "grill-toggle active flex-1 py-3 px-4 rounded-xl border border-brand-orange/50 bg-brand-orange/10 font-bold text-sm transition text-brand-orange flex items-center justify-center gap-2";
-                btn2.className = "grill-toggle flex-1 py-3 px-4 rounded-xl border border-zinc-300 dark:border-brand-border bg-zinc-100 dark:bg-zinc-800/40 font-bold text-sm transition text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/80 flex items-center justify-center gap-2";
+                btn1.className = "grill-toggle active flex-1 py-3 px-4 rounded-xl border border-brand-orange/50 bg-brand-orange/10 font-bold text-sm transition text-brand-orange flex items-center justify-center gap-2 active:scale-95";
+                btn2.className = "grill-toggle flex-1 py-3 px-4 rounded-xl border border-zinc-300 dark:border-brand-border bg-zinc-100 dark:bg-zinc-800/40 font-bold text-sm transition text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/80 flex items-center justify-center gap-2 active:scale-95";
             } else {
-                btn2.className = "grill-toggle active flex-1 py-3 px-4 rounded-xl border border-brand-orange/50 bg-brand-orange/10 font-bold text-sm transition text-brand-orange flex items-center justify-center gap-2";
-                btn1.className = "grill-toggle flex-1 py-3 px-4 rounded-xl border border-zinc-300 dark:border-brand-border bg-zinc-100 dark:bg-zinc-800/40 font-bold text-sm transition text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/80 flex items-center justify-center gap-2";
+                btn2.className = "grill-toggle active flex-1 py-3 px-4 rounded-xl border border-brand-orange/50 bg-brand-orange/10 font-bold text-sm transition text-brand-orange flex items-center justify-center gap-2 active:scale-95";
+                btn1.className = "grill-toggle flex-1 py-3 px-4 rounded-xl border border-zinc-300 dark:border-brand-border bg-zinc-100 dark:bg-zinc-800/40 font-bold text-sm transition text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/80 flex items-center justify-center gap-2 active:scale-95";
             }
         }
     </script>
